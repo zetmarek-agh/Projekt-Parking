@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projekt
 {
+    [Serializable]
     public abstract class Pojazd : IEquatable<Pojazd>, IComparable<Pojazd>
     {
         private string _nrRejstracyjny;
@@ -37,23 +38,26 @@ namespace Projekt
         }
     }
 
+    [Serializable]
     public class Jednoslad : Pojazd
     {
-        protected Jednoslad(string nrRejstracyjny, Osoba wlasciciel, string marka, string kolor) : base(nrRejstracyjny, wlasciciel, marka, kolor)
+        public Jednoslad(string nrRejstracyjny, Osoba wlasciciel, string marka, string kolor) : base(nrRejstracyjny, wlasciciel, marka, kolor)
         {
         }
     }
 
+    [Serializable]
     public class Samochod : Pojazd
     {
-        protected Samochod(string nrRejstracyjny, Osoba wlasciciel, string marka, string kolor) : base(nrRejstracyjny, wlasciciel, marka, kolor)
+        public Samochod(string nrRejstracyjny, Osoba wlasciciel, string marka, string kolor) : base(nrRejstracyjny, wlasciciel, marka, kolor)
         {
         }
     }
 
+    [Serializable]
     public class DuzySamochod : Samochod
     {
-        protected DuzySamochod(string nrRejstracyjny, Osoba wlasciciel, string marka, string kolor) : base(nrRejstracyjny, wlasciciel, marka, kolor)
+        public DuzySamochod(string nrRejstracyjny, Osoba wlasciciel, string marka, string kolor) : base(nrRejstracyjny, wlasciciel, marka, kolor)
         {
         }
     }

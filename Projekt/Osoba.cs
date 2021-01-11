@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projekt
 {
+    [Serializable]
     public class Osoba : IEquatable<Osoba>, IComparable<Osoba>
     {
         private static int _globalId = 0;
@@ -15,6 +16,7 @@ namespace Projekt
         private string _pesel;
         private string _email;
         private string _telefon;
+        private Cennik cennik = new DomyslnyCennik();
 
         private Osoba()
         {
@@ -26,17 +28,57 @@ namespace Projekt
         {
             _imie = imie;
             _nazwisko = nazwisko;
-            _pesel = pesel;
-            _email = email;
+            Pesel = pesel;
+            Email = email;
             _telefon = telefon;
         }
 
         public int Id { get => _id; set => _id = value; }
         public string Imie { get => _imie; set => _imie = value; }
         public string Nazwisko { get => _nazwisko; set => _nazwisko = value; }
-        public string Pesel { get => _pesel; set => _pesel = value; }
-        public string Email { get => _email; set => _email = value; }
+        public string Pesel
+        {
+            get { return _pesel; }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentException("Pesel nie może być null lub pusty");
+                if (value.Length != 11)
+                    throw new ArgumentException("Pesel ma złą długość");
+                int sum = 0;
+                try
+                {
+                    sum = 1 * int.Parse(value[0].ToString()) + 3 * int.Parse(value[1].ToString()) + 7 * int.Parse(value[2].ToString()) + 9 * int.Parse(value[3].ToString()) + 1 * int.Parse(value[4].ToString()) + 3 * int.Parse(value[5].ToString()) + 7 * int.Parse(value[6].ToString()) + 9 * int.Parse(value[7].ToString()) + 1 * int.Parse(value[8].ToString()) + 3 * int.Parse(value[9].ToString()) + 1 * int.Parse(value[10].ToString());
+                }
+                catch
+                {
+                    throw new ArgumentException("Pesel nie ma tylko cyfr");
+                }
+                if (sum % 10 != 0)
+                    throw new ArgumentException("Pesel ma złą sumę kontrolną");
+                _pesel = value;
+            }
+        }
+        public string Email
+        {
+            get { return _email; }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                    throw new ArgumentException("Email nie może być null lub pusty");
+                try
+                {
+                    new System.Net.Mail.MailAddress(value);
+                }
+                catch
+                {
+                    throw new ArgumentException("Email jest zły");
+                }
+                _email = value;
+            }
+        }
         public string Telefon { get => _telefon; set => _telefon = value; }
+        public Cennik Cenink { get => cennik; set => cennik = value; }
 
         public bool Equals(Osoba other)
         {

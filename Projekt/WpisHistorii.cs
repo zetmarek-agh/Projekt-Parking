@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projekt
 {
+    [Serializable]
     public class WpisHistorii : IComparable<WpisHistorii>
     {
         private Pojazd _pojazd;
