@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Projekt
 {
+    [Serializable]
     public class MiejsceParkingowe
     {
         private static int _globalId = 0;
@@ -76,7 +77,7 @@ namespace Projekt
     }
 
     [Serializable]
-    internal class MiejsceWolneException : Exception
+    public class MiejsceWolneException : Exception
     {
         public MiejsceWolneException()
         {
@@ -96,7 +97,7 @@ namespace Projekt
     }
 
     [Serializable]
-    internal class MiejsceZajeteException : Exception
+    public class MiejsceZajeteException : Exception
     {
         public MiejsceZajeteException()
         {

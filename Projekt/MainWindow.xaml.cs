@@ -23,6 +23,33 @@ namespace Projekt
         public MainWindow()
         {
             InitializeComponent();
+            Parking parking = new Parking();
+            MiejsceParkingowe mp = new MiejsceParkingowe(RodzajMiejsca.Zwykle, true);
+            parking.Repo.Add(mp.Id, mp);
+            parking.ZapiszJson("test");
+            parking = (Parking)Parking.OdczytajJson("test");
+            ParkingList.DataContext = parking;
+        }
+
+        private void ParkingList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            List<MiejsceParkingowe> gridList = new List<MiejsceParkingowe>();
+            gridList.Add(ParkingList.SelectedItem as MiejsceParkingowe);
+            ParkingListGrid.ItemsSource = gridList;
         }
     }
+
+    /*
+     * Odczyt zapis do pliku
+     * Wyświetlanie historii miejsca
+     * Wjazd/wyjazd samochodu na parking
+     * Cennik, obliczanie ceny
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     */
 }

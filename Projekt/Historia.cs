@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projekt
 {
+    [Serializable]
     public class Historia 
     {
         private List<WpisHistorii> _zapisHistorii = new List<WpisHistorii>();
