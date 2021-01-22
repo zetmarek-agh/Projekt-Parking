@@ -10,20 +10,16 @@ namespace Projekt
     public abstract class Pojazd : IEquatable<Pojazd>, IComparable<Pojazd>
     {
         private string _nrRejstracyjny;
-        private Osoba _wlasciciel;
         private string _marka;
         private string _kolor;
 
-        protected Pojazd(string nrRejstracyjny, Osoba wlasciciel, string marka, string kolor)
+        protected Pojazd(string nrRejstracyjny, string marka, string kolor)
         {
             _nrRejstracyjny = nrRejstracyjny;
-            _wlasciciel = wlasciciel;
             _marka = marka;
             _kolor = kolor;
         }
-
         public string NrRejstracyjny { get => _nrRejstracyjny; set => _nrRejstracyjny = value; }
-        public Osoba Wlasciciel { get => _wlasciciel; set => _wlasciciel = value; }
         public string Marka { get => _marka; set => _marka = value; }
         public string Kolor { get => _kolor; set => _kolor = value; }
 
@@ -36,12 +32,17 @@ namespace Projekt
         {
             return _nrRejstracyjny.Equals(other.NrRejstracyjny);
         }
+
+        public override string ToString()
+        {
+            return $"{this.GetType().ToString()}: {NrRejstracyjny} {Kolor} {Marka}";
+        }
     }
 
     [Serializable]
     public class Jednoslad : Pojazd
     {
-        public Jednoslad(string nrRejstracyjny, Osoba wlasciciel, string marka, string kolor) : base(nrRejstracyjny, wlasciciel, marka, kolor)
+        public Jednoslad(string nrRejstracyjny, string marka, string kolor) : base(nrRejstracyjny, marka, kolor)
         {
         }
     }
@@ -49,7 +50,7 @@ namespace Projekt
     [Serializable]
     public class Samochod : Pojazd
     {
-        public Samochod(string nrRejstracyjny, Osoba wlasciciel, string marka, string kolor) : base(nrRejstracyjny, wlasciciel, marka, kolor)
+        public Samochod(string nrRejstracyjny, string marka, string kolor) : base(nrRejstracyjny, marka, kolor)
         {
         }
     }
@@ -57,7 +58,7 @@ namespace Projekt
     [Serializable]
     public class DuzySamochod : Samochod
     {
-        public DuzySamochod(string nrRejstracyjny, Osoba wlasciciel, string marka, string kolor) : base(nrRejstracyjny, wlasciciel, marka, kolor)
+        public DuzySamochod(string nrRejstracyjny, string marka, string kolor) : base(nrRejstracyjny, marka, kolor)
         {
         }
     }

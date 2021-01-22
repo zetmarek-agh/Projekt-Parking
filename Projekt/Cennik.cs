@@ -8,7 +8,12 @@ namespace Projekt
 {
     public abstract class Cennik
     {
-        public virtual Decimal ObliczKoszt(DateTime? dataRozpoczecia, DateTime? dataZakonczenia, MiejsceParkingowe mp, Osoba o)
+        public virtual decimal ObliczKoszt(DateTime? dataRozpoczecia, DateTime? dataZakonczenia, MiejsceParkingowe mp, Osoba o)
+        {
+            return 0;
+        }
+
+        public virtual decimal ObliczKoszt(double sec, MiejsceParkingowe mp, Osoba o)
         {
             return 0;
         }
@@ -18,8 +23,13 @@ namespace Projekt
     {
         public override decimal ObliczKoszt(DateTime? dataRozpoczecia, DateTime? dataZakonczenia, MiejsceParkingowe mp, Osoba o)
         {
-            Decimal baseCost = 1;
             double sec = (dataZakonczenia.Value - dataRozpoczecia.Value).TotalSeconds;
+            return ObliczKoszt(sec, mp, o);
+        }
+
+        public override decimal ObliczKoszt(double sec, MiejsceParkingowe mp, Osoba o)
+        {
+            Decimal baseCost = 1;
             int hour = (int)Math.Ceiling((sec / 3600) - 180);
             if (hour < 1)
                 hour = 1;
@@ -42,6 +52,11 @@ namespace Projekt
     public class AbonamentCennik : Cennik
     {
         public override decimal ObliczKoszt(DateTime? dataRozpoczecia, DateTime? dataZakonczenia, MiejsceParkingowe mp, Osoba o)
+        {
+            return 0;
+        }
+
+        public override decimal ObliczKoszt(double sec, MiejsceParkingowe mp, Osoba o)
         {
             return 0;
         }

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Zet\Documents\GitHub\dzisProjekt-Parking\Projekt\obj\Debug\
+C:\Users\Zet\source\repos\ParkingNasz\Projekt\obj\Debug\
 Projekt
 none
 false
 DEBUG;TRACE
-C:\Users\Zet\Documents\GitHub\dzisProjekt-Parking\Projekt\App.xaml
-11151548125
+C:\Users\Zet\source\repos\ParkingNasz\Projekt\App.xaml
+3293229572
 
-13-328050706
-13-1505183044
-MainWindow.xaml;
+15-1025218140
+14-1504064364
+MainWindow.xaml;WjazdWindow.xaml;WyjazdWindow.xaml;
 
-True
+False
 

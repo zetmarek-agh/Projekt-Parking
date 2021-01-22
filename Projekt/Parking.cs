@@ -29,18 +29,22 @@ namespace Projekt
         }
         public void ZapiszJson(string nazwa)
         {
-            TextWriter tw = new StreamWriter($"{nazwa}.json");
+            TextWriter tw = new StreamWriter($"{nazwa}");
             JsonSerializer xs = new JsonSerializer();
+            xs.TypeNameHandling = TypeNameHandling.Auto; //zapisz informację o typach żeby klasy abstrakcyjne działały
             xs.Serialize(tw, this);
             tw.Close();
         }
 
         public static Parking OdczytajJson(string nazwa)
         {
-            TextReader tr = new StreamReader($"{nazwa}.json");
+            TextReader tr = new StreamReader($"{nazwa}");
             string content = tr.ReadToEnd();
             tr.Close();
-            return JsonConvert.DeserializeObject<Parking>(content);
+            return JsonConvert.DeserializeObject<Parking>(content, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            });
         }
     }
 }

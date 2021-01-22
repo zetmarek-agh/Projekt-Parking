@@ -16,6 +16,8 @@ namespace Projekt
 
         public Dictionary<int, Osoba> Repo { get => _repo; }
 
+        public List<Osoba> List { get => _repo.Values.ToList(); }
+
         public OsobaRepozytorium()
         {
 
@@ -27,7 +29,7 @@ namespace Projekt
             foreach (var o in _repo.Values)
             {
                 if (o.Pesel == osoba.Pesel)
-                    throw new OsobaIstniejeException("Taki same pesel");
+                    throw new OsobaIstniejeException("Taki sam pesel");
                 if (o.Email == osoba.Email)
                     throw new OsobaIstniejeException("Taki sam Email");
             }
@@ -46,18 +48,22 @@ namespace Projekt
 
         public void ZapiszJson(string nazwa)
         {
-            TextWriter tw = new StreamWriter($"{nazwa}.json");
+            TextWriter tw = new StreamWriter($"{nazwa}");
             JsonSerializer xs = new JsonSerializer();
+            xs.TypeNameHandling = TypeNameHandling.Auto; //zapisz informację o typach żeby klasy abstrakcyjne działały
             xs.Serialize(tw, this);
             tw.Close();
         }
 
         public static OsobaRepozytorium OdczytajJson(string nazwa)
         {
-            TextReader tr = new StreamReader($"{nazwa}.json");
+            TextReader tr = new StreamReader($"{nazwa}");
             string content = tr.ReadToEnd();
             tr.Close();
-            return JsonConvert.DeserializeObject<OsobaRepozytorium>(content);
+            return JsonConvert.DeserializeObject<OsobaRepozytorium>(content, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            });
         }
     }
 

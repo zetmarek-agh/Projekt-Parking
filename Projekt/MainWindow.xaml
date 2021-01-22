@@ -7,15 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ListBox x:Name="ParkingList" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" SelectionChanged="ParkingList_SelectionChanged" ItemsSource="{Binding ListRepo}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Id}"></TextBlock>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <DataGrid x:Name="ParkingListGrid" HorizontalAlignment="Left" Height="100" Margin="120
-                  ,10,0,0" VerticalAlignment="Top" Width="667" GridLinesVisibility="None" RowHeight="100"/>
-
+        <Button x:Name="Wjazd" Content="Wjazd" Click="Wjazd_Click" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="350" Height="160"/>
+        <Button x:Name="Wyjazd" Content="Wyjazd" Click="Wyjazd_Click" HorizontalAlignment="Left" Margin="432,10,0,0" VerticalAlignment="Top" Width="350" Height="160"/>
+        <Button x:Name="Zapisz_parking" Content="Zapisz Parking" Click="Zapisz_parking_Click" HorizontalAlignment="Left" Margin="432,236,0,0" VerticalAlignment="Top" Width="350" Height="80"/>
+        <Button x:Name="Wczytaj_parking" Content="Wczytaj Parking" Click="Wczytaj_parking_Click" HorizontalAlignment="Left" Margin="432,329,0,0" VerticalAlignment="Top" Width="350" Height="80"/>
+        <Button x:Name="Wczytaj_osoby" Content="Wczytaj Osoby" Click="Wczytaj_osoby_Click" HorizontalAlignment="Left" Margin="10,236,0,0" VerticalAlignment="Top" Width="350" Height="173"/>
     </Grid>
 </Window>

@@ -19,7 +19,7 @@ namespace ProjektTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(OsobaIstniejeException), "Taki same pesel")]
+        [ExpectedException(typeof(OsobaIstniejeException), "Taki sam pesel")]
         public void OsobaRepozytoriumAdd_ThrowsException_WhenSamePesel()
         {
             OsobaRepozytorium or = new OsobaRepozytorium();
@@ -90,11 +90,13 @@ namespace ProjektTest
         {
             MiejsceParkingowe mp = new MiejsceParkingowe(RodzajMiejsca.Duze, false);
             Osoba os1 = new Osoba("Ala", "Nowak", "45121478644", "alanowak@gmail.com", "123321123");
-            Samochod s1 = new Samochod("PO1232", os1, "Ford", "Czerwony");
-            Samochod s2 = new Samochod("PO1231", os1, "Ford", "Czerwony");
+            Samochod s1 = new Samochod("PO1232", "Ford", "Czerwony");
+            Samochod s2 = new Samochod("PO1231", "Ford", "Czerwony");
+            os1.Pojazdy.Add(s1);
+            os1.Pojazdy.Add(s2);
 
-            mp.ZajmijMiejsce(s1);
-            mp.ZajmijMiejsce(s2);
+            mp.ZajmijMiejsce(s1, os1);
+            mp.ZajmijMiejsce(s2, os1);
         }
 
         [TestMethod]
@@ -111,12 +113,14 @@ namespace ProjektTest
         {
             MiejsceParkingowe mp = new MiejsceParkingowe(RodzajMiejsca.Duze, false);
             Osoba os1 = new Osoba("Ala", "Nowak", "45121478644", "alanowak@gmail.com", "123321123");
-            Samochod s1 = new Samochod("PO1232", os1, "Ford", "Czerwony");
-            Samochod s2 = new Samochod("PO1231", os1, "Ford", "Czerwony");
-            
-            mp.ZajmijMiejsce(s1);
+            Samochod s1 = new Samochod("PO1232", "Ford", "Czerwony");
+            Samochod s2 = new Samochod("PO1231", "Ford", "Czerwony");
+            os1.Pojazdy.Add(s1);
+            os1.Pojazdy.Add(s2);
+
+            mp.ZajmijMiejsce(s1, os1);
             mp.OpuscMiejsce();
-            mp.ZajmijMiejsce(s2);
+            mp.ZajmijMiejsce(s2, os1);
         }
 
         [TestMethod]
@@ -125,12 +129,49 @@ namespace ProjektTest
         {
             MiejsceParkingowe mp = new MiejsceParkingowe(RodzajMiejsca.Duze, false);
             Osoba os1 = new Osoba("Ala", "Nowak", "45121478644", "alanowak@gmail.com", "123321123");
-            Samochod s1 = new Samochod("PO1232", os1, "Ford", "Czerwony");
+            Samochod s1 = new Samochod("PO1232", "Ford", "Czerwony");
+            os1.Pojazdy.Add(s1);
             DateTime dataRozpoczecia = DateTime.Parse("2020-05-01");
             DateTime dataZakonczenia = DateTime.Parse("2020-04-01");
 
-            mp.ZajmijMiejsce(s1, dataRozpoczecia);
+            mp.ZajmijMiejsce(s1, os1, dataRozpoczecia);
             mp.OpuscMiejsce(dataZakonczenia);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ZlyTypMiejscaException), "Osoba musi być niepełnosprawna żeby korzystać z miejsca dla niepełnosprawnych")]
+        public void MiejsceParkingowe_ThrowsException_WhenDlaNiepelnosprawnychAndOsobaNotNiepelnosprawna()
+        {
+            MiejsceParkingowe mp = new MiejsceParkingowe(RodzajMiejsca.Duze, true);
+            Osoba os1 = new Osoba("Ala", "Nowak", "45121478644", "alanowak@gmail.com", "123321123");
+            Samochod s1 = new Samochod("PO1232", "Ford", "Czerwony");
+            os1.Pojazdy.Add(s1);
+
+            mp.ZajmijMiejsce(s1, os1);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ZlyTypMiejscaException), "Za małe miejsce parkingowe")]
+        public void MiejsceParkingowe_ThrowsException_WhenTooSmallMale()
+        {
+            MiejsceParkingowe mp = new MiejsceParkingowe(RodzajMiejsca.Male, false);
+            Osoba os1 = new Osoba("Ala", "Nowak", "45121478644", "alanowak@gmail.com", "123321123");
+            Samochod s1 = new Samochod("PO1232", "Ford", "Czerwony");
+            os1.Pojazdy.Add(s1);
+
+            mp.ZajmijMiejsce(s1, os1);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ZlyTypMiejscaException), "Za małe miejsce parkingowe")]
+        public void MiejsceParkingowe_ThrowsException_WhenTooSmallZwykle()
+        {
+            MiejsceParkingowe mp = new MiejsceParkingowe(RodzajMiejsca.Zwykle, false);
+            Osoba os1 = new Osoba("Ala", "Nowak", "45121478644", "alanowak@gmail.com", "123321123");
+            Samochod s1 = new DuzySamochod("PO1232", "Ford", "Czerwony");
+            os1.Pojazdy.Add(s1);
+
+            mp.ZajmijMiejsce(s1, os1);
         }
     }
 }

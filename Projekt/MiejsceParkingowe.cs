@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
@@ -38,16 +39,30 @@ namespace Projekt
         public RodzajMiejsca RodzajMiejsca { get => _rodzajMiejsca; }
         public bool DlaNiepelnosprawnych { get => _dlaNiepelnosprawnych; }
         public Historia Historia { get => _historia; }
+        public bool Zajete { get => _obecnyPojazd != null; }
+        public string Repr { get => ToString(); }
 
-        public void ZajmijMiejsce(Pojazd pojazd, DateTime? dataRozpoczecia = null)
+        public void ZajmijMiejsce(Pojazd pojazd, Osoba wlasciciel, DateTime? dataRozpoczecia = null)
         {
             if(dataRozpoczecia == null)
             {
                 dataRozpoczecia = DateTime.Now;
             }
-            if(_obecnyPojazd != null)
+            if(this.Zajete)
             {
                 throw new MiejsceZajeteException();
+            }
+            if(pojazd.GetType() == typeof(DuzySamochod) && RodzajMiejsca != RodzajMiejsca.Duze)
+            {
+                throw new ZlyTypMiejscaException("Za małe miejsce parkingowe");
+            }
+            if (pojazd.GetType() == typeof(Samochod) && RodzajMiejsca == RodzajMiejsca.Male)
+            {
+                throw new ZlyTypMiejscaException("Za małe miejsce parkingowe");
+            }
+            if (!wlasciciel.Niepelnosprawna && DlaNiepelnosprawnych)
+            {
+                throw new ZlyTypMiejscaException("Osoba musi być niepełnosprawna żeby korzystać z miejsca dla niepełnosprawnych");
             }
             _obecnyPojazd = pojazd;
             _dataRozpoczecia = dataRozpoczecia;
@@ -63,7 +78,7 @@ namespace Projekt
             {
                 throw new ArgumentException("dataZakonczenia musi być późniejsza niż dataRozpoczecia!");
             }
-            if (_obecnyPojazd == null)
+            if (!this.Zajete)
             {
                 throw new MiejsceWolneException();
             }
@@ -73,6 +88,31 @@ namespace Projekt
             _obecnyPojazd = null;
             _dataRozpoczecia = null;
             return czasWSekundach;
+        }
+
+        public override string ToString()
+        {
+            return $"ID: {Id}, {RodzajMiejsca}, DlaNiepelnosprawnych: {DlaNiepelnosprawnych}, Zajęte? {Zajete}";
+        }
+    }
+
+    [Serializable]
+    public class ZlyTypMiejscaException : Exception
+    {
+        public ZlyTypMiejscaException()
+        {
+        }
+
+        public ZlyTypMiejscaException(string message) : base(message)
+        {
+        }
+
+        public ZlyTypMiejscaException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+
+        protected ZlyTypMiejscaException(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
         }
     }
 

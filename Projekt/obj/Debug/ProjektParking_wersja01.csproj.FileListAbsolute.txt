@@ -28,3 +28,10 @@ C:\Users\Zet\Documents\GitHub\Projekt-Parking\Projekt\obj\Debug\ProjektParking_w
 C:\Users\Zet\Documents\GitHub\Projekt-Parking\Projekt\obj\Debug\ProjektParking_wersja01.csproj.CoreCompileInputs.cache
 C:\Users\Zet\Documents\GitHub\Projekt-Parking\Projekt\obj\Debug\Projekt.exe
 C:\Users\Zet\Documents\GitHub\Projekt-Parking\Projekt\obj\Debug\Projekt.pdb
+C:\Users\Zet\source\repos\ParkingNasz\Projekt\obj\Debug\ProjektParking_wersja01.csprojAssemblyReference.cache
+C:\Users\Zet\source\repos\ParkingNasz\Projekt\obj\Debug\MainWindow.g.cs
+C:\Users\Zet\source\repos\ParkingNasz\Projekt\obj\Debug\App.g.cs
+C:\Users\Zet\source\repos\ParkingNasz\Projekt\obj\Debug\Projekt_MarkupCompile.cache
+C:\Users\Zet\source\repos\ParkingNasz\Projekt\obj\Debug\Projekt_MarkupCompile.lref
+C:\Users\Zet\source\repos\ParkingNasz\Projekt\obj\Debug\Projekt.exe
+C:\Users\Zet\source\repos\ParkingNasz\Projekt\obj\Debug\Projekt.pdb

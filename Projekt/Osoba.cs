@@ -16,7 +16,9 @@ namespace Projekt
         private string _pesel;
         private string _email;
         private string _telefon;
+        private bool _niepelnosprawna;
         private Cennik cennik = new DomyslnyCennik();
+        private List<Pojazd> pojazdy = new List<Pojazd>();
 
         private Osoba()
         {
@@ -24,18 +26,21 @@ namespace Projekt
             _globalId++;
         }
 
-        public Osoba(string imie, string nazwisko, string pesel, string email, string telefon) : this()
+        public Osoba(string imie, string nazwisko, string pesel, string email, string telefon, bool niepelnosprawna = false) : this()
         {
             _imie = imie;
             _nazwisko = nazwisko;
             Pesel = pesel;
             Email = email;
             _telefon = telefon;
+            _niepelnosprawna = niepelnosprawna;
         }
 
         public int Id { get => _id; set => _id = value; }
         public string Imie { get => _imie; set => _imie = value; }
         public string Nazwisko { get => _nazwisko; set => _nazwisko = value; }
+
+        public bool Niepelnosprawna { get => _niepelnosprawna; set => _niepelnosprawna = value; }
         public string Pesel
         {
             get { return _pesel; }
@@ -78,7 +83,9 @@ namespace Projekt
             }
         }
         public string Telefon { get => _telefon; set => _telefon = value; }
-        public Cennik Cenink { get => cennik; set => cennik = value; }
+        public Cennik Cennik { get => cennik; set => cennik = value; }
+
+        public List<Pojazd> Pojazdy { get => pojazdy; }
 
         public bool Equals(Osoba other)
         {

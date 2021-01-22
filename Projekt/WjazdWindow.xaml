@@ -1,0 +1,18 @@
+﻿<Window x:Class="Projekt.WjazdWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekt"
+        mc:Ignorable="d"
+        Title="WjazdWindow" Height="450" Width="800">
+    <Grid>
+        <ListBox x:Name="MiejsceParkingoweLB" DisplayMemberPath="Repr" HorizontalAlignment="Left" Height="360" Margin="10,49,0,0" VerticalAlignment="Top" Width="561" SelectionChanged="MiejsceParkingoweLB_SelectionChanged"/>
+        <TextBox x:Name="NrRejstracyjnyTB" HorizontalAlignment="Left" Height="43" Margin="586,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="196" Text="Nr rejstracyjny"/>
+        <Button x:Name="Szukaj" Click="Szukaj_Click" Content="Szukaj" HorizontalAlignment="Left" Margin="645,180,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="Zajmij" Content="Zajmij" Click="Zajmij_Click" HorizontalAlignment="Left" Margin="586,49,0,0" VerticalAlignment="Top" Width="196" Height="65"/>
+        <TextBlock HorizontalAlignment="Left" Margin="22,24,0,0" TextWrapping="Wrap" Text="Miejsca Parkingowe" VerticalAlignment="Top"/>
+        <DataGrid x:Name="HistoriaGrid" HorizontalAlignment="Left" Height="186" Margin="586,223,0,0" VerticalAlignment="Top" Width="196"/>
+
+    </Grid>
+</Window>
