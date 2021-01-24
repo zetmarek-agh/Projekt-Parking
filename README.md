@@ -5,4 +5,4 @@ Wersje 01 oraz 02 nam przepadły, bo w ferworze walki usunąłem je z repozytori
 
 OK, uaktualniłem to po naszej pracy w weekend. Coś już to zaczyna przypominac to czym miało być, ale jeszcze sporo roboty i jak można było przewidzieć pewnie nie zdązymy wszystkiego zrobić co w ambitnych zamierzeniach było.
 
-U mnie działa.
+U mnie działa. To co było ślepym zaułkiem dałem do repo Cszarp.
