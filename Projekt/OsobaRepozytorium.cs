@@ -29,7 +29,7 @@ namespace Projekt
             foreach (var o in _repo.Values)
             {
                 if (o.Pesel == osoba.Pesel)
-                    throw new OsobaIstniejeException("Taki sam pesel");
+                    throw new OsobaIstniejeException("Taki same pesel");
                 if (o.Email == osoba.Email)
                     throw new OsobaIstniejeException("Taki sam Email");
             }

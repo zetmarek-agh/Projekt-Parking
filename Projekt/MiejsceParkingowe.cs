@@ -34,11 +34,11 @@ namespace Projekt
         }
 
         public int Id { get => _id; }
-        public Pojazd ObecnyPojazd { get => _obecnyPojazd; }
-        public DateTime? DataRozpoczecia { get => _dataRozpoczecia; }
+        public Pojazd ObecnyPojazd { set => _obecnyPojazd = value; get => _obecnyPojazd; }
+        public DateTime? DataRozpoczecia { set => _dataRozpoczecia = value;  get => _dataRozpoczecia; }
         public RodzajMiejsca RodzajMiejsca { get => _rodzajMiejsca; }
         public bool DlaNiepelnosprawnych { get => _dlaNiepelnosprawnych; }
-        public Historia Historia { get => _historia; }
+        public Historia Historia { set => _historia = value; get => _historia; }
         public bool Zajete { get => _obecnyPojazd != null; }
         public string Repr { get => ToString(); }
 
@@ -83,7 +83,7 @@ namespace Projekt
                 throw new MiejsceWolneException();
             }
             double czasWSekundach = (dataZakonczenia - _dataRozpoczecia).Value.TotalSeconds;
-            WpisHistorii nowaHistoria = new WpisHistorii(_obecnyPojazd, this, _dataRozpoczecia, dataZakonczenia);
+            WpisHistorii nowaHistoria = new WpisHistorii(_obecnyPojazd, _dataRozpoczecia, dataZakonczenia);
             _historia.Add(nowaHistoria);
             _obecnyPojazd = null;
             _dataRozpoczecia = null;

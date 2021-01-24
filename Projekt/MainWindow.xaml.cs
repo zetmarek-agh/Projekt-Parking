@@ -88,8 +88,8 @@ namespace Projekt
 
         private void Zapisz_parking_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
+           try
+           {
                 SaveFileDialog sfd = new SaveFileDialog();
                 sfd.Filter = "Pliki JSON (*.json)|*.json";
                 sfd.DefaultExt = "json";
@@ -117,6 +117,7 @@ namespace Projekt
                 {
                     parking = (Parking)Parking.OdczytajJson(ofd.FileName);
                 }
+                Console.WriteLine(parking.Repo[1].Historia.ZapisHistorii);
                 Zapisz_parking.IsEnabled = true;
                 Wyjazd.IsEnabled = true;
                 Wjazd.IsEnabled = true;

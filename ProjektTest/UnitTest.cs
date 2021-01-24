@@ -19,7 +19,7 @@ namespace ProjektTest
         }
 
         [TestMethod]
-        [ExpectedException(typeof(OsobaIstniejeException), "Taki sam pesel")]
+        [ExpectedException(typeof(OsobaIstniejeException), "Taki same pesel")]
         public void OsobaRepozytoriumAdd_ThrowsException_WhenSamePesel()
         {
             OsobaRepozytorium or = new OsobaRepozytorium();

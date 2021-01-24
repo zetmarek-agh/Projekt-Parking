@@ -30,7 +30,7 @@ namespace Projekt
         public override decimal ObliczKoszt(double sec, MiejsceParkingowe mp, Osoba o)
         {
             Decimal baseCost = 1;
-            int hour = (int)Math.Ceiling((sec / 3600) - 180);
+            int hour = (int)Math.Ceiling(((sec- 180) / 3600));
             if (hour < 1)
                 hour = 1;
             hour--;

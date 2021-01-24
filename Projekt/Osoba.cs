@@ -85,7 +85,7 @@ namespace Projekt
         public string Telefon { get => _telefon; set => _telefon = value; }
         public Cennik Cennik { get => cennik; set => cennik = value; }
 
-        public List<Pojazd> Pojazdy { get => pojazdy; }
+        public List<Pojazd> Pojazdy { set => pojazdy = value;  get => pojazdy; }
 
         public bool Equals(Osoba other)
         {

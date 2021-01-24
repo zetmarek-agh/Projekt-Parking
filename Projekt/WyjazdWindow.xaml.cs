@@ -50,6 +50,8 @@ namespace Projekt
                     var czas = mp.OpuscMiejsce();
                     var doZaplaty = wlasciciel.Cennik.ObliczKoszt(czas, mp, wlasciciel);
                     this.MiejsceParkingoweLB.ItemsSource = parking.ListRepo;
+                    HistoriaGrid.ItemsSource = null;
+                    HistoriaGrid.ItemsSource = mp.Historia.ZapisHistorii;
                     MessageBox.Show($"Do zapłaty: {doZaplaty} PLN", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)

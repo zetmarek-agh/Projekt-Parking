@@ -10,22 +10,20 @@ namespace Projekt
     public class WpisHistorii : IComparable<WpisHistorii>
     {
         private Pojazd _pojazd;
-        private MiejsceParkingowe _miejsceParkingowe;
+        //private MiejsceParkingowe _miejsceParkingowe;
         private DateTime? _dataRozpoczecia;
         private DateTime? _dataZakonczenia;
 
-        public WpisHistorii(Pojazd pojazd, MiejsceParkingowe miejsceParkingowe, DateTime? dataRozpoczecia, DateTime? dataZakonczenia)
+        public WpisHistorii(Pojazd pojazd, DateTime? dataRozpoczecia, DateTime? dataZakonczenia)
         {
             _pojazd = pojazd;
-            _miejsceParkingowe = miejsceParkingowe;
             _dataRozpoczecia = dataRozpoczecia;
             _dataZakonczenia = dataZakonczenia;
         }
 
-        public Pojazd Pojazd { get => _pojazd; }
-        public MiejsceParkingowe MiejsceParkingowe { get => _miejsceParkingowe; }
-        public DateTime? DataRozpoczecia { get => _dataRozpoczecia; }
-        public DateTime? DataZakonczenia { get => _dataZakonczenia; }
+        public Pojazd Pojazd { set => _pojazd = value;  get => _pojazd; }
+        public DateTime? DataRozpoczecia { set => _dataRozpoczecia = value; get => _dataRozpoczecia; }
+        public DateTime? DataZakonczenia { set => _dataZakonczenia = value; get => _dataZakonczenia; }
 
         public int CompareTo(WpisHistorii other)
         {

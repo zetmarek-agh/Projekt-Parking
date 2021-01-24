@@ -38,13 +38,12 @@ namespace Projekt
 
         public static Parking OdczytajJson(string nazwa)
         {
-            TextReader tr = new StreamReader($"{nazwa}");
-            string content = tr.ReadToEnd();
-            tr.Close();
-            return JsonConvert.DeserializeObject<Parking>(content, new JsonSerializerSettings
+            JsonSerializer xs = new JsonSerializer();
+            xs.TypeNameHandling = TypeNameHandling.Auto;
+            using (StreamReader file = File.OpenText($"{nazwa}"))
             {
-                TypeNameHandling = TypeNameHandling.Auto
-            });
+                return (Parking)xs.Deserialize(file, typeof(Parking));
+            }
         }
     }
 }
